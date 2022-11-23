@@ -6,19 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .image {
+        .road {
             margin-top: 35px;
             margin-left: 60px;
             height: 1500px;
             width: 1500px;
         }
-     
+        .bussen {
+            position:absolute;
+            top:50px;
+            left:400px;
+        }
+        
+        
     </style>
 </head>
 
 <body>
     <div id="app"></div>
-    
 
 
 
@@ -27,34 +32,38 @@
 
 
         //model
-        let peopleGreetings = ["Halla Kompis Fet Buss", "Nice buss boss",""]
+        let peopleGreetings = ["Halla Kompis Fet Buss", "Nice buss boss", ""]
         let driveInterval;
         let tempPost;
         let road = "url(img/Veien2.png)";
         let satisfaction = '';
         let score = '';
         let posY = 0;
+        let posX = 0;
         let pX = "px";
 
 
 
 
-        
-        
-        
+
+
+
         //view
         show()
-        function show(){
+
+        function show() {
             let HTML = '';
             HTML += /*HTML*/`
-            <div><p class="image" alt="vroom vrrom" style="background:${road}${posY}${pX}"</p></div>
+            <div>   <p class="road" alt="vroom vrrom" style="background:${road}${posX}${posY}${pX}"</p></div>
+            <img class="bussen" src="img/Buss2.png" height="400">    
                 
-            
         
             
             `;
             document.getElementById("app").innerHTML = HTML;
+
         }
+        startDriving()
 
 
 
@@ -62,14 +71,24 @@
 
 
 
-        
+
         //controller
 
-        function
 
+        function startDriving() {
+            setInterval(driving, 10);
+        }
+        function driving() {
+            posY--;
+            show();
+        }
+        function Mathrandom(max1, min1) {
+            min = Math.ceil(min1);
+            max = Math.floor(max1);
 
-
-
+            return Math.floor(Math.random() * (max - min + 1) + min);
+            console.log(Mathrandom)
+        }
 
 
 
@@ -83,4 +102,5 @@
     </script>
 
 </body>
+
 </html>
