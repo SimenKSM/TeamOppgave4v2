@@ -9,8 +9,8 @@
         .image {
             margin-top: 35px;
             margin-left: 60px;
-            height: 1928px;
-            width: 2920px;
+            height: 1500px;
+            width: 1500px;
         }
      
     </style>
@@ -30,9 +30,11 @@
         let peopleGreetings = ["Halla Kompis Fet Buss", "Nice buss boss",""]
         let driveInterval;
         let tempPost;
-        let road = "url(img/Veien.png)";
+        let road = "url(img/Veien2.png)";
         let satisfaction = '';
         let score = '';
+        let posY = 0;
+        let pX = "px";
 
 
 
@@ -45,7 +47,7 @@
         function show(){
             let HTML = '';
             HTML += /*HTML*/`
-            <div><p class="image" alt="vroom vrrom" style="background:${road}"</p></div>
+            <div><p class="image" alt="vroom vrrom" style="background:${road}${posY}${px}"</p></div>
                 
             
         
