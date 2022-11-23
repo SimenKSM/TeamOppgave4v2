@@ -48,7 +48,7 @@
         let posY = 0;
         let posX = 0;
         let pX = "px";
-        let bussTop = 1500;
+        let bussTop = 1550;
         let bussStopInterval;
         
 
@@ -64,7 +64,9 @@
             let HTML = '';
             HTML += /*HTML*/`
             <div>
-            <div> <p class="road" alt="vroom vrrom" style="background:${road}${posX}${posY}${pX}"></p><div><img class="busstop" style="top:${bussTop}${pX}" src="img/busstopp.png"></img>;<img src="img/buss2.png" style="width:1500px; height:300px; position:absolute; z-index:3; top:1530px;left:50px;"></img></div></div>
+            <div> <p class="road" alt="vroom vrrom" style="background:${road}${posX}${posY}${pX}"></p><div><img class="busstop" style="top:${bussTop}${pX}" src="img/busstopp.png"></img>
+            
+            <img src="img/buss2.png" style="width:1500px; height:400px; position:absolute; z-index:3; top:1530px;left:50px;"></img></div></div>
             
             <img class="bussen" src="img/Buss2.png" height="400">    
             </div>
@@ -106,10 +108,17 @@
             bussStopInterval = setInterval(bussStopIncrement,10)
         }
         function bussStopIncrement(){
+        if(bussTop <= 50){
+        clearInterval(bussStopInterval);
+        clearInterval(driveInterval);
+        }
+        else {
         bussTop--;
         show();
         }
 
+        
+    }
 
 
 
