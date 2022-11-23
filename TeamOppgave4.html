@@ -106,7 +106,7 @@
             
             <img class="bussen" src="img/Buss2.png" height="400">    
             </div>
-            <div class="select2">${answersTemp}<br><br><br><br><br><br><br><br><br>your score is ${score}</div>
+            <div class="select2">${answersTemp}<br><br><br><br><br><br><br><br><br><h3>your score is ${score}</h3></div>
             
             
             <select class="select"  onchange="checkAnwsers(this.value)"> 
@@ -150,12 +150,12 @@
             console.log(Mathrandom)
         }
         function bussStopMove() {
-            bussStopInterval = setInterval(bussStopIncrement, 1)
+            bussStopInterval = setInterval(bussStopIncrement, 10)
 
 
         }
         function bussStopIncrement() {
-            if (bussTop <= 50) {
+            if (bussTop == 50) {
                 clearInterval(bussStopInterval);
                 clearInterval(driveInterval);
                 people();
@@ -218,7 +218,7 @@
         
         
         if (amountPeople === 0) {
-                bussTop = 1500;
+                bussTop = 49;
                 bussStopMove();
                 startDriving();
             }
