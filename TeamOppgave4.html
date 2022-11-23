@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            background-image: url('Veien.png');
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,9 +26,10 @@
 
 
         //model
-
-
-
+        let peopleGreetings = ["Halla Kompis Fet Buss", "Nice buss boss",""]
+        let driveInterval;
+        let tempPost;
+        let road = "url(Veien.png)";
 
 
 
@@ -33,7 +42,9 @@
         function show(){
             let HTML = '';
             HTML += /*HTML*/`
-            <div>test</div>
+            <div><p style="background:${road}"</p></div>
+
+        
             
             `;
             document.getElementById("app").innerHTML = HTML;
@@ -64,5 +75,6 @@
 
 
     </script>
+
 </body>
 </html>
