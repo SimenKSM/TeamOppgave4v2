@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            background-image: url('Veien.png');
-            background-size: cover;
+        .image {
+            margin-top: 35px;
+            margin-left: 60px;
+            height: 129px;
+            width: 125px;
         }
+     
     </style>
 </head>
 
@@ -29,7 +30,7 @@
         let peopleGreetings = ["Halla Kompis Fet Buss", "Nice buss boss",""]
         let driveInterval;
         let tempPost;
-        let road = "url(Veien.png)";
+        let road = "url(img/Veien.png)";
 
 
 
@@ -42,8 +43,9 @@
         function show(){
             let HTML = '';
             HTML += /*HTML*/`
-            <div><p style="background:${road}"</p></div>
-
+            <div><p class="image" alt="vroom vrrom" style="background:${road}"</p></div>
+                
+                <img src="img/Veien.png" alt="Girl in a jacket" width="500" height="600">
         
             
             `;
