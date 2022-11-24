@@ -93,7 +93,7 @@
                 sScreen = `you fucking won ${score}`;
             }
             let HTML2 = '';
-            HTML2 += /*HTML*/`
+            HTML2 = /*HTML*/`
             <h1> ${sScreen}</h1>
             `;
             document.getElementById("app").innerHTML = HTML2;
@@ -131,10 +131,10 @@
         }
         function Mathrandom(min1, max1) {
             return Math.floor(Math.random() * (max1 - min1) + min1);
-            console.log(Mathrandom)
+           
         }
         function bussStopMove() {
-            bussStopInterval = setInterval(bussStopIncrement, 10)
+            bussStopInterval = setInterval(bussStopIncrement, 1)
         }
         function bussStopIncrement() {
             if (stopVisited === false) {
@@ -179,7 +179,7 @@
                     return looseScreen();
                 }
                 else if (score >= 11) {
-                    return winScreen();
+                    return looseScreen();
                 }
                 return
             }
