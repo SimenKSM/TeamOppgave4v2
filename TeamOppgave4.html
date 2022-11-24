@@ -56,9 +56,10 @@
     </style>
 </head>
 
-<body>
+<body onkeydown="return controlBus(event)">
     <div id="app"></div>
     <script>
+        
         //model
         let youngGreetings = ["Halla Kompis Fet Buss", "Nice buss boss", "We love Fortnite"]
         let middleAged = ["placeholder voksen1", "placeholder voksen2"];
@@ -119,6 +120,7 @@
         }
         startDriving()
         bussStopMove()
+
         //controller
         function startDriving() {
             driveInterval = setInterval(driving, 1);
@@ -132,7 +134,7 @@
             console.log(Mathrandom)
         }
         function bussStopMove() {
-            bussStopInterval = setInterval(bussStopIncrement, 1)
+            bussStopInterval = setInterval(bussStopIncrement, 10)
         }
         function bussStopIncrement() {
             if (stopVisited === false) {
@@ -214,14 +216,15 @@
                 show()
             }
         }
-        function controlBus(key){
-        if (key.keycode == 38) { //up
+        function controlBus(e){
+        if (e.keyCode == 38 || e.keyCode == 87) { //up
         bussLocationHeight--;
          }       
-        else if (key.keycode == 40) { 
+        else if (e.keyCode == 40 || e.keyCode == 83) { 
         bussLocationHeight++;
         //down
-        }}
+        }
+        }
     </script>
 
 </body>
