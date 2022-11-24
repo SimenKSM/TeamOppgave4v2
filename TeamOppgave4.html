@@ -16,7 +16,6 @@
 
         .bussen {
             position: absolute;
-            top: 50px;
             left: 400px;
         }
 
@@ -59,17 +58,11 @@
 
 <body>
     <div id="app"></div>
-
-
-
-
     <script>
-
-
         //model
         let youngGreetings = ["Halla Kompis Fet Buss", "Nice buss boss", "We love Fortnite"]
         let middleAged = ["placeholder voksen1", "placeholder voksen2"];
-        let oldFucks = ["25 Kr, da jeg var ung da kosta det bare 5 øre.", "placeholder pensjonist"];
+        let oldFucks = ["25 Kr, da jeg var ung da kosta det bare 5 øre.", "Kan jeg få faktura på fax"];
         let characterAge = [];
         let answers = [];
         let driveInterval;
@@ -85,30 +78,35 @@
         let bussStopInterval;
         let answersTemp = '';
         let ageTemp = '';
-
-
-
-
-
-
+        let bussLocationHeight = 50;
+        let stopVisited = false;
+        let bussRoute = 0;
+        let sScreen = ``;
 
         //view
+        function looseScreen() {
+            if (score <= 10) {
+                sScreen = `You fucking lost ${score}`
+            }
+            else if (score >= 11) {
+                sScreen = `you fucking won ${score}`;
+            }
+            let HTML2 = '';
+            HTML2 += /*HTML*/`
+            <h1> ${sScreen}</h1>
+            `;
+            document.getElementById("app").innerHTML = HTML2;
+        }
         show()
-
-
         function show() {
             let HTML = '';
             HTML += /*HTML*/`
             <div>
             <div> <p class="road" alt="vroom vrrom" style="background:${road}${posX}${posY}${pX}"></p><div><img class="busstop" style="top:${bussTop}${pX}" src="img/busstopp.png"></img>
-            
             <img src="img/Buss2.png" style="width:1500px; height:400px; position:absolute; z-index:3; top:1530px;left:50px;"></img></div></div>
-            
-            <img class="bussen" src="img/Buss2.png" height="400">    
+            <img class="bussen" style="top:${bussLocationHeight}${pX}" src="img/Buss2.png" height="400">    
             </div>
-            <div class="select2">${answersTemp}<br><br><br><br><br><br><br><br><br><h3>your score is ${score}</h3></div>
-            
-            
+            <div class="select2">${answersTemp}<br><br><br><br><br><br><br><br><br><h3>Din poengsum ${score}</h3></div>
             <select class="select"  onchange="checkAnwsers(this.value)"> 
                      <option value="" disabled selected hidden>Velg Aldersgruppe</option>
                      <option value="1">Ung</option>
@@ -116,54 +114,39 @@
                      <option value="3">Pensjonist</option>
                      
             <div></div>
-            
-                
-        
-            
             `;
             document.getElementById("app").innerHTML = HTML;
-
         }
         startDriving()
         bussStopMove()
-
-
-
-
-
-
-
-
         //controller
-
-
         function startDriving() {
-            driveInterval = setInterval(driving, 10);
+            driveInterval = setInterval(driving, 1);
         }
         function driving() {
             posY--;
             show();
         }
-        function Mathrandom(max1, min1) {
-
+        function Mathrandom(min1, max1) {
             return Math.floor(Math.random() * (max1 - min1) + min1);
             console.log(Mathrandom)
         }
         function bussStopMove() {
-            bussStopInterval = setInterval(bussStopIncrement, 10)
-
-
+            bussStopInterval = setInterval(bussStopIncrement, 1)
         }
         function bussStopIncrement() {
-            if (bussTop == 50) {
-                clearInterval(bussStopInterval);
-                clearInterval(driveInterval);
-                people();
-                conversation();
-            }
-            else {
-                bussTop--;
-                show();
+            if (stopVisited === false) {
+                if (bussTop == bussLocationHeight) {
+                    clearInterval(bussStopInterval);
+                    clearInterval(driveInterval);
+                    people();
+                    conversation();
+                    stopVisited = true;
+                }
+                else {
+                    bussTop--;
+                    show();
+                }
             }
         }
         function people() {
@@ -187,7 +170,17 @@
             }
         }
         function conversation() {
-
+            if (bussRoute === 5) {
+                answersTemp = '';
+                show();
+                if (score <= 10) {
+                    return looseScreen();
+                }
+                else if (score >= 11) {
+                    return winScreen();
+                }
+                return
+            }
             if (amountPeople !== 0) {
                 amountPeople--;
                 answersTemp = answers.pop()
@@ -198,56 +191,37 @@
             }
         }
         function checkAnwsers(element) {
-
-         if (element == ageTemp) {
-                    score++;
-                    conversation();
-                    console.log(true)
-                    console.log(element)
-                    console.log(ageTemp)
-                    show()
-                }
-                else {
-                    score--;
-                    conversation();
-                    console.log(false)
-
-
-                    show()    
-        }
-        
-        
-        if (amountPeople === 0) {
-                bussTop = 49;
-                bussStopMove();
+            if (amountPeople === 0) {
+                bussTop = 1550;
+                stopVisited = false;
+                setTimeout(bussStopMove, 5000);
                 startDriving();
+                answersTemp = ('');
+                bussRoute++;
             }
-
-         }
-            
-
-
-
- // if (element == ageTemp) {
-            //     conversation();
-            //     console.log(true)
-            //     console.log(element)
-            //     console.log(ageTemp)
-            //     show()
-            // }
-            // else {
-            //     conversation();
-            //     console.log(false)
-
-
-            //     show()
-            //
-            // if (amountPeople === 0) {
-                // return
-            // }
-
-
-
+            if (element == ageTemp) {
+                score++;
+                conversation();
+                console.log(true)
+                console.log(element)
+                console.log(ageTemp)
+                show()
+            }
+            else {
+                score--;
+                conversation();
+                console.log(false)
+                show()
+            }
+        }
+        function controlBus(key){
+        if (key.keycode == 38) { //up
+        bussLocationHeight--;
+         }       
+        else if (key.keycode == 40) { 
+        bussLocationHeight++;
+        //down
+        }}
     </script>
 
 </body>
