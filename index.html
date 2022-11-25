@@ -217,6 +217,9 @@
             }
         }
         function controlBus(e){
+            if (bussTop == bussLocationHeight){
+            return
+            }
         if (e.keyCode == 38 || e.keyCode == 87) { //up
         bussLocationHeight--;
          }       
